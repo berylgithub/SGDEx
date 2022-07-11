@@ -152,8 +152,8 @@ then
         D_f(x, y) &= \frac{1}{n} \sum^n_{i=1} f_i(x) - 
                 \frac{1}{n} \sum^n_{i=1} f_i(y) - 
                 \frac{1}{n} \sum^n_{i=1} \langle \nabla f_i(y), x-y \rangle, \\
-        D_f(x, y) &= \frac{1}{n} \sum_i (f_i(x) - f_i(y) - \langle \nabla f_i(y), x-y \rangle), \\
-        D_f(x, y) &= \frac{1}{n} \sum_i D_{f_i}(x, y).
+        D_f(x, y) &= \frac{1}{n} \sum^n_{i=1} (f_i(x) - f_i(y) - \langle \nabla f_i(y), x-y \rangle), \\
+        D_f(x, y) &= \frac{1}{n} \sum^n_{i=1} D_{f_i}(x, y).
     \end{split}
 \end{equation*}
 \subsection*{E26}
@@ -184,28 +184,63 @@ and
 \end{equation*}
 then 
 \begin{equation*}
-    \textbf{E}[\chi_i] = \text{Prob}(i \in S) = \sum_i p_i \chi_i = \frac{1}{n} \sum_i \chi_i = \frac{\tau}{n}.
+    \textbf{E}[\chi_i] = \text{Prob}(i \in S) = \sum^n_{i=1} p_i \chi_i = \frac{1}{n} \sum^n_{i=1} \chi_i = \frac{\tau}{n}.
 \end{equation*}
 
 \subsection*{E35}
 For any vectors, $b_1, ..., b_n \in \mathbb{R}^d$:
 \begin{equation*}
     \begin{split}
-        \left\|\sum_i b_i \right\|^2 - \sum_i  \left\| b_i \right\|^2 &= \underbrace{\sum_i \langle b_i, b_i\rangle + 2 \sum_{i \neq j} \langle b_i, b_j \rangle}_{\left\|\sum_i b_i \right\|^2} - \sum_i \langle b_i, b_i\rangle, \\
-        \left\|\sum_i b_i \right\|^2 - \sum_i  \left\| b_i \right\|^2 &= \sum_{i \neq j} \langle b_i, b_j \rangle.
+        \left\|\sum^n_{i=1} b_i \right\|^2 - \sum^n_{i=1}  \left\| b_i \right\|^2 &= \underbrace{\sum^n_{i=1} \langle b_i, b_i\rangle + \sum_{i \neq j} \langle b_i, b_j \rangle}_{\left\|\sum^n_{i=1} b_i \right\|^2} - \sum^n_{i=1} \langle b_i, b_i\rangle, \\
+        \left\|\sum^n_{i=1} b_i \right\|^2 - \sum^n_{i=1}  \left\| b_i \right\|^2 &= \sum_{i \neq j} \langle b_i, b_j \rangle.
     \end{split}
 \end{equation*}
 
-\vspace{0.1cm}
-
 \section*{[P9]}
 \subsection*{E37}
-Assumptions of $\mathcal{C}:\mathbb{R} \rightarrow \mathbb{R}^d$ :
+Assumptions of $\mathcal{C}:\mathbb{R}^d \rightarrow \mathbb{R}^d$ :
 \begin{enumerate}
     \item $\mathbf{E}[\mathcal{C}(x)] = x, \quad \forall x \in \mathbb{R}^d$
     \item $\mathbf{E}\left[||\mathcal{C}(x) - x||^2\right] \leq \omega ||x ||^2 + \delta, \quad \forall x \in \mathbb{R}^d, \quad \exists \omega, \delta \geq 0$
-    
-\end{enumerate}\subsection*{E39}
+\end{enumerate}
+Proof of convergence for CGD with $n=1$: \\
+Since $\mathcal{C} \in \mathbb{B}^d(\omega)$,
+\vspace{0.2cm}
+\begin{equation}
+    \mathbf{E}\left[ ||g(x)||^2 \right] = \mathbf{E}\left[||\mathcal{C}(\nabla f(x)) ||^2\right] \leq (\omega + 1) || \nabla f(x)||^2.
+    \label{eq:expectation_gx}
+\end{equation}
+In case of $\nabla f(y) = 0$,
+\begin{equation*}
+    \begin{split}
+        G(x,y) &:= \mathbf{E}\left[ ||g(x) - \nabla f(y)||^2 \right] \\
+            &= \mathbf{E}\left[ ||g(x)||^2 \right] \\
+            &\defeq{(\ref{eq:expectation_gx})}{\leq} (\omega + 1)||\nabla f(x) - \nabla f(y)||^2, \\
+            &\leq 2(\omega + 1)LD_f(x,y).
+    \end{split}
+\end{equation*}
+In case of $\nabla f(y) \neq 0$,
+\begin{equation*}
+    \begin{split}
+        G(x,y) &:= \mathbf{E}\left[ ||g(x) - \nabla f(y)||^2 \right] \\
+                &= \mathbf{E}\left[ ||g(x) - \nabla f(x)||^2 \right] + || \nabla f(x) - \nabla f(y)||^2 \\
+                &= \mathbf{E}\left[ ||\mathcal{C}(\nabla f(x)) - \nabla f(x)||^2 \right] + ||\nabla f(x) - \nabla f(y)||^2 \\
+                &\leq \omega ||\nabla f(x)||^2 + \delta + || \nabla f(x) - \nabla f(y)||^2 \\
+                &= \omega ||\nabla f(x) - \nabla f(y) + \nabla f(y)||^2 + || \nabla f(x) - \nabla f(y)||^2 + \delta \\
+                &\leq 2\omega||\nabla f(x) - \nabla f(y)||^2 + 2\omega|| \nabla f(y) ||^2 + || \nabla f(x) - \nabla f(y)||^2 + \delta \\
+                &= (2\omega+1)||\nabla f(x) - \nabla f(y)||^2 + 2\omega|| \nabla f(y) ||^2 + \delta \\
+                &\leq 2\underbrace{(2\omega+1)L}_{A}D_f(x,y) + \underbrace{2\omega||\nabla f(y)||^2 + \delta}_{C}.
+    \end{split}
+\end{equation*}
+If $0 < \gamma < \frac{1}{A}$, then
+\begin{equation*}
+    \mathbf{E}\left[ ||x^k - x^*||^2 \right] \leq (1-\gamma \mu)^k ||x^0 - x^* || + \frac{2\gamma\omega|| \nabla f(x^*)||^2 + \gamma\delta}{\mu}.
+\end{equation*}
+
+
+
+\subsection*{E39}
+
 \begin{figure}
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/P9.png}
 \end{figure}
