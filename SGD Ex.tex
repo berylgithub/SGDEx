@@ -157,7 +157,16 @@ then
     \end{split}
 \end{equation*}
 \subsection*{E26}
-\at{partial}
+If $\sigma^2_\star = 0$, then
+\begin{equation*}
+    \begin{split}
+        \sigma^2_\star &= \left(\frac{1}{n^2} \sum_{i=1}^n \frac{||\nabla f_i(x^\star)||^2}{p_i}\right) - ||\nabla f(x^\star)||^2 = 0 \\
+        &= \left(\frac{1}{n^2} \sum_{i=1}^n \frac{||np_i \nabla f(x^\star)||^2}{p_i}\right) - ||\nabla f(x^\star)||^2 = 0\\
+        &= p_i \sum_{i=1}^n (|| \nabla f(x^\star) ||^2) - ||\nabla f(x^\star)||^2 = 0\\
+        &= np_i || \nabla f(x^\star) ||^2 - ||\nabla f(x^\star)||^2 = 0, \\
+        \sigma^2_\star = 0 &\implies np_i \nabla f(x^\star) = \nabla f(x^\star).
+    \end{split}
+\end{equation*}
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
