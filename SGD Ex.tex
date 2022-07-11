@@ -196,6 +196,9 @@ For any vectors, $b_1, ..., b_n \in \mathbb{R}^d$:
     \end{split}
 \end{equation*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
 \section*{[P9]}
 \subsection*{E37}
 Assumptions of $\mathcal{C}:\mathbb{R}^d \rightarrow \mathbb{R}^d$ :
@@ -323,10 +326,42 @@ Else, if $\nabla f(y) = 0$, then
 %     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/P9.png}
 % \end{figure}
 
-%\section*{Part 10}
-% \subsection*{Exercise 41}
-% \subsection*{Exercise 42}
-\hyperlink{https://math.stackexchange.com/questions/2650892/expectation-of-positive-semidefinite-random-matrix}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P10]}
+\subsection*{E41}
+Let
+\begin{equation*}
+    p_i = \text{Prob}(i \in S),
+\end{equation*}
+where
+\begin{equation*}
+    S \subseteq \{1,2,...,d\},
+\end{equation*}
+then
+\begin{equation*}
+    \mathbf{E}[|S|] = \mathbf{E}\left[\sum_{i=1}^d |S_i|\right] = \sum_{i=1}^d \mathbf{E}[|S_i|] = \sum_{i=1}^d 1p_i + 0(1-p_i) = \sum_{i=1}^d p_i.
+\end{equation*}
+
+\subsection*{E42}
+If $\mathbf{E}[\mathbf{C}^\top\mathbf{C}]$ is finite, then $\forall x \neq 0$:
+\begin{equation*}
+    \begin{split}
+        x^T \mathbf{E}[\mathbf{C}^\top\mathbf{C}] x &\geq 0 \\
+        \mathbf{E}[x^T \mathbf{C}^\top\mathbf{C}x ] &\geq 0 \\
+        x^T \mathbf{C}^\top\mathbf{C}x &\geq 0 \\
+        (\mathbf{C}x)^\top(\mathbf{C}x) &\geq 0.
+    \end{split}
+\end{equation*}
+
+%\hyperlink{https://math.stackexchange.com/questions/2650892/expectation-of-positive-semidefinite-random-matrix}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P11]}
+
 
 % \section*{Part 12}
 % \subsection*{Exercise 55}
