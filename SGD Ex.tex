@@ -13,6 +13,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{mathtools}
+\usepackage{enumitem}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 %macros
@@ -36,7 +37,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
 \vspace{0.1cm}
-\section*{P4}
+\section*{[P4]}
 \subsection*{E1}
 Def. 17:
 \begin{equation}
@@ -75,9 +76,10 @@ $\forall x, y \in \mathbb{R}^d $:
 % \subsection*{E4}
 % \vspace{0.1cm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
 \vspace{0.1cm}
-\section*{P6}
+\section*{[P6]}
 \subsection*{E17}
 \subsubsection*{(Equation 34):}
 \begin{equation}
@@ -133,11 +135,12 @@ then
 \begin{equation}
     \text{Prob}(||X - \textbf{E}[X]|| \geq t) \leq \frac{\textbf{Var}[X]}{t^2}.
 \end{equation}
-
 \vspace{0.1cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
 \vspace{0.1cm}
-\section*{P7}
+\section*{[P7]}
 \subsection*{E24}
 If
 \begin{equation*}
@@ -153,9 +156,56 @@ then
         D_f(x, y) &= \frac{1}{n} \sum_i D_{f_i}(x, y).
     \end{split}
 \end{equation*}
-%\section*{Part 9}
-% \subsection*{Exercise 37}
-% \subsection*{Exercise 39}
+\subsection*{E26}
+\at{partial}
+\vspace{0.1cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P8]}
+\subsection*{E33}
+Let
+\begin{equation*}
+    \chi_i = 
+    \begin{cases}
+        1 \quad i \in S\\
+        0 \quad i \notin S
+    \end{cases}
+    .
+\end{equation*}
+Since
+\begin{equation*}
+    p_i = \frac{1}{n},
+\end{equation*}
+and
+\begin{equation*}
+    |S| = \tau,
+\end{equation*}
+then 
+\begin{equation*}
+    \textbf{E}[\chi_i] = \text{Prob}(i \in S) = \sum_i p_i \chi_i = \frac{1}{n} \sum_i \chi_i = \frac{\tau}{n}.
+\end{equation*}
+
+\subsection*{E35}
+For any vectors, $b_1, ..., b_n \in \mathbb{R}^d$:
+\begin{equation*}
+    \begin{split}
+        \left\|\sum_i b_i \right\|^2 - \sum_i  \left\| b_i \right\|^2 &= \underbrace{\sum_i \langle b_i, b_i\rangle + 2 \sum_{i \neq j} \langle b_i, b_j \rangle}_{\left\|\sum_i b_i \right\|^2} - \sum_i \langle b_i, b_i\rangle, \\
+        \left\|\sum_i b_i \right\|^2 - \sum_i  \left\| b_i \right\|^2 &= \sum_{i \neq j} \langle b_i, b_j \rangle.
+    \end{split}
+\end{equation*}
+
+\vspace{0.1cm}
+
+\section*{[P9]}
+\subsection*{E37}
+Assumptions of $\mathcal{C}:\mathbb{R} \rightarrow \mathbb{R}^d$ :
+\begin{enumerate}
+    \item $\mathbf{E}[\mathcal{C}(x)] = x, \quad \forall x \in \mathbb{R}^d$
+    \item $\mathbf{E}\left[||\mathcal{C}(x) - x||^2\right] \leq \omega ||x ||^2 + \delta, \quad \forall x \in \mathbb{R}^d, \quad \exists \omega, \delta \geq 0$
+    
+\end{enumerate}\subsection*{E39}
 \begin{figure}
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/P9.png}
 \end{figure}
