@@ -313,10 +313,10 @@ Else, if $\nabla f(y) = 0$, then
                 &= \mathbf{E}\left[ ||\hat{g}(x) - \mathbf{E}\left[ \hat{g}(x) \right]||^2 \right] + ||\mathbf{E}\left[ \hat{g}(x) \right]||^2 \\
                 &= \mathbf{E}\left[ ||\hat{g}(x) - \nabla f(x)||^2 \right] + || \nabla f(x)||^2\\
                 &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + || \nabla f(x) - \nabla f(y) + \nabla f(y)||^2 \\
-                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2|| \nabla f(x) - \nabla f(y)||^2 + 2 || \nabla f(y)||^2\\
-                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2LD_f(x,y) + 2|| \underbrace{\nabla f(y)}_{0}||^2 \\
+                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2|| \nabla f(x) - \nabla f(y)||^2 + 2|| \underbrace{\nabla f(y)}_{0}||^2\\
+                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2LD_f(x,y)  \\
                 &\leq ... \text{ same as (\ref{eq:gxy_deltanotzero}), from the third line} \\
-                &= 2(L + 2L_{\text{max}})D_f(x,y) + 2 \frac{\omega}{n} \sigma^2(y)
+                &= 2(L + 2L_{\text{max}})D_f(x,y) + 2 \frac{\omega}{n} \sigma^2(y).
     \end{split}
 \end{equation}
 % \begin{figure}
