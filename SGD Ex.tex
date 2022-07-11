@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 % Language setting
 % Replace `english' with e.g. `spanish' to change the document language
@@ -10,21 +10,149 @@
 
 % Useful packages
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{mathtools}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+%macros
+\newcommand{\defeq}[2]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{#2}}
+\def\D{\displaystyle}
+\def\att{                    % mark at the margin
+        \marginpar[ \hspace*{\fill} \raisebox{-0.2em}{\rule{2mm}{1.2em}} ]
+        {\raisebox{-0.2em}{\rule{2mm}{1.2em}} }
+        }
+\def\at#1{[*** \att #1 ***]}  % text needing attention
+\def\spc{\hspace*{0.5cm}}
 
 \title{SGD Ex}
 %\author{Beryl Aribowo}
 
 \begin{document}
 \maketitle
+%$asd \myeq 2$
+%\at{need to rewrite this subsec with more details - the BO eq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{P4}
+\subsection*{E1}
+Def. 17:
+\begin{equation}
+    D_f(x, y) + D_f(y, x) = \langle \nabla f(x) - \nabla f(y), x - y \rangle 
+                            = \langle \nabla f(y) - \nabla f(x), y - x \rangle
+    \label{eq:symbregdiv}
+\end{equation}
+$\forall x, y \in \mathbb{R}^d $:
+\begin{equation}
+    \begin{split}
+        \mu ||x-y||^2 & \leq 2D_f(x,y), \\
+        \frac{\mu}{2} ||x-y||^2 & \leq D_f(x, y), \\
+        \frac{\mu}{2} ||x-y||^2 & \leq D_f(y, x), \\
+        D_f(x, y) + \frac{\mu}{2} ||x-y||^2 & \leq D_f(x, y) + D_f(y, x), \\
+        D_f(x, y) + \frac{\mu}{2} ||x-y||^2 & \defeq{(\refeq{eq:symbregdiv})}{\leq} \langle \nabla f(x) - \nabla f(y), x - y \rangle.
+    \end{split}
+    \label{eq:E1}
+\end{equation}
+
+\subsection*{E2}
+\begin{equation}
+    \begin{split}
+        D_f(x, y) + \frac{\mu}{2} ||x-y||^2 & \leq \langle \nabla f(x) - \nabla f(y), x - y \rangle, \\
+        \langle \nabla f(x) - \nabla f(y), x - y \rangle & \geq \underbrace{D_f(x, y)}_{\geq \frac{\mu}{2} ||x-y||^2} + \frac{\mu}{2} ||x-y||^2, \\
+        \langle \nabla f(x) - \nabla f(y), x - y \rangle & \geq \frac{\mu}{2} ||x-y||^2 + \frac{\mu}{2} ||x-y||^2, \\
+        \langle \nabla f(x) - \nabla f(y), x - y \rangle & \geq \mu ||x-y||^2.
+    \end{split}
+    \label{eq:E2}
+\end{equation}
+\vspace{0.1cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \hrule
+% \vspace{0.1cm}
+% \section*{P5}
+% \subsection*{E4}
+% \vspace{0.1cm}
 
 \hrule
-%\section*{Part 6}
-%\subsection*{Exercise 17}
-%\subsection*{Exercise 19}
-\hyperlink{https://www.probabilitycourse.com/chapter6/6_2_2_markov_chebyshev_inequalities.php}{}
+\vspace{0.1cm}
+\section*{P6}
+\subsection*{E17}
+\subsubsection*{(Equation 34):}
+\begin{equation}
+    \begin{split}
+        \langle a, b \rangle &\leq \frac{||a||^2}{2t} + \frac{t||b||^2}{2}, \\
+        \langle a, b \rangle &\leq \frac{\langle a, a \rangle}{2t} + \frac{t \langle b, b \rangle}{2}, \\
+        2t \langle a, b \rangle &\leq \langle a, a \rangle + t^2 \langle b, b \rangle, \\
+        0 &\leq \langle a, a \rangle + \langle tb, tb \rangle - \langle a, tb \rangle - \langle tb, a \rangle, \\
+        0 &\leq ||a - tb||^2. 
+    \end{split}
+\end{equation}
+\subsubsection*{(Equation 35):}
+\begin{equation}
+    \begin{split}
+        ||a+b||^2 \leq 2||a||^2 + 2||b||^2, \\
+        \langle a, a\rangle + \langle b, b\rangle + 2 \langle a, b\rangle & \leq 2\langle a, a\rangle + 2\langle b, b\rangle, \\
+        0 &\leq \langle a, a\rangle + \langle b, b\rangle -  2 \langle a, b\rangle, \\
+        0 &\leq ||a-b||^2.
+    \end{split}    
+\end{equation}
+\subsubsection*{(Equation 36):}
+\begin{equation}
+    \begin{split}
+        \frac{1}{2}||a||^2 - ||b||^2 &\leq ||a+b||^2,\\
+        \frac{1}{2} \langle a, a\rangle - \langle a, a\rangle &\leq \langle a, a\rangle + \langle b, b\rangle + 2 \langle a, b\rangle, \\
+        \langle a, a\rangle - 2 \langle b, b\rangle &\leq 2 \langle a, a\rangle + 2 \langle b, b\rangle + 4 \langle a, b\rangle, \\
+        0 &\leq \langle a, a\rangle + \langle 2b, 2b\rangle + \langle a, 2b\rangle + \langle 2b, a\rangle, \\
+        0 &\leq ||a+2b||^2.
+    \end{split}
+\end{equation}
 
+\subsection*{E19}
+%\hyperlink{https://www.probabilitycourse.com/chapter6/6_2_2_markov_chebyshev_inequalities.php}{}
+For random vector $X \in \mathbb{R}^d$:
+\begin{equation}
+    \textbf{\text{Var}}[X] := \textbf{E}\left[ ||X - \textbf{E}[X]||^2\right].
+    \label{eq:variance}
+\end{equation}
+Markov's inequality:
+\begin{equation}
+    \text{Prob}(X \geq t) \leq \frac{\textbf{E}[X]}{t}.
+    \label{eq:markovineq}
+\end{equation}
+Proof of Chebyshev's inequality using Markov's inequality:
+\begin{equation*}
+    \text{Prob}(||X - \textbf{E}[X]||^2 \geq t^2) \leq \frac{\textbf{E}\left[ ||X - \textbf{E}[X]||^2\right]}{t^2}.
+\end{equation*}
+Since
+\begin{equation}
+    \text{Prob}(||X - \textbf{E}[X]||^2 \geq t^2) = \text{Prob}(||X - \textbf{E}[X]|| \geq t),
+\end{equation}
+then
+\begin{equation}
+    \text{Prob}(||X - \textbf{E}[X]|| \geq t) \leq \frac{\textbf{Var}[X]}{t^2}.
+\end{equation}
+
+\vspace{0.1cm}
+\hrule
+\vspace{0.1cm}
+\section*{P7}
+\subsection*{E24}
+If
+\begin{equation*}
+    f = \frac{1}{n} \sum^n_{i=1}f_i,
+\end{equation*}
+then
+\begin{equation*}
+    \begin{split}
+        D_f(x, y) &= \frac{1}{n} \sum^n_{i=1} f_i(x) - 
+                \frac{1}{n} \sum^n_{i=1} f_i(y) - 
+                \frac{1}{n} \sum^n_{i=1} \langle \nabla f_i(y), x-y \rangle, \\
+        D_f(x, y) &= \frac{1}{n} \sum_i (f_i(x) - f_i(y) - \langle \nabla f_i(y), x-y \rangle), \\
+        D_f(x, y) &= \frac{1}{n} \sum_i D_{f_i}(x, y).
+    \end{split}
+\end{equation*}
 %\section*{Part 9}
 % \subsection*{Exercise 37}
 % \subsection*{Exercise 39}
