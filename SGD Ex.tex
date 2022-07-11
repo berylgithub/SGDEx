@@ -237,18 +237,96 @@ If $0 < \gamma < \frac{1}{A}$, then
     \mathbf{E}\left[ ||x^k - x^*||^2 \right] \leq (1-\gamma \mu)^k ||x^0 - x^* || + \frac{2\gamma\omega|| \nabla f(x^*)||^2 + \gamma\delta}{\mu}.
 \end{equation*}
 
-
-
 \subsection*{E39}
-
-\begin{figure}
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/P9.png}
-\end{figure}
+Lemma 51: \\
+if $\mathcal{C}(x) = x, \forall x$ (no master compression) and $\omega_i = \omega,\forall i$, then
+\begin{equation*}
+    \begin{split}
+        G(x,y) \leq 2 \underbrace{\left(L + 2L_{\text{max}}\frac{\omega}{n}\right)}_{A}D_f(x,y) + \underbrace{2\frac{\omega}{n}\sigma^2(y)}_{C(y)},
+    \end{split}
+\end{equation*}
+where
+\begin{equation*}
+    \sigma^2(y) := \frac{1}{n}\sum_{i=1}^n ||\nabla f_i(y)||^2.
+\end{equation*}
+If $\sigma^2(y) = 0$, then
+\begin{equation*}
+    G(x,y) \leq 2 \underbrace{\left(L + L_{\text{max}}\frac{\omega}{n}\right)}_{A}D_f(x,y).
+\end{equation*}
+\textbf{Proof}: \\
+If $\nabla f(y) \neq 0$, then
+\begin{equation}
+    \begin{split}
+        G(x,y) &:= \mathbf{E}\left[ ||g(x) - \nabla f(y)||^2 \right] \\
+                &= \mathbf{E}\left[ ||g(x) - \nabla f(x)||^2 \right] + ||\nabla f(x) - \nabla f(y)||^2 \\
+                &\leq \mathbf{E}\left[ ||g(x) - \nabla f(x)||^2 \right] + 2LD_f(x,y),
+    \end{split}
+\end{equation}
+and
+\begin{equation}
+    \begin{split}
+        g(x)   = \mathcal{C}(\hat{g}(x)) = \hat{g}(x) = \frac{1}{n}\sum_{i=1}^n g_i(x).
+    \end{split}
+    \label{eq:p9g}
+\end{equation}
+where
+\begin{equation*}
+    g_i(x) = \mathcal{C}_i(\nabla f_i (x)).
+\end{equation*}
+Estimate
+\begin{equation*}
+    \begin{split}
+        \mathbf{E}\left[ ||g(x) - \nabla f(x)||^2 \right] &\defeq{(\ref{eq:p9g})}{=} \mathbf{E}\left[ ||\mathcal{C}(\hat{g}(x)) - \nabla f(x)||^2 \right] \\
+                &= \mathbf{E}\left[ ||\hat{g}(x) - \nabla f(x)||^2 \right] \\
+                &= \mathbf{E}\left[ \left\| \frac{1}{n} \sum_{i=1}^n \underbrace{(g_i(x) - \nabla f_i(x))}_{a_i}\right\|^2\right] \\
+                &= \frac{1}{n^2} \mathbf{E}\left[\sum_{i=1}^n ||a_i||^2 + \sum_{i\neq j}\langle a_i, a_j \rangle \right] \\
+                &= \frac{1}{n^2} \sum_{i=1}^n \mathbf{E}\left[||a_i||^2\right] + \sum_{i\neq j} \mathbf{E}\left[\langle a_i, a_j \rangle \right] \\
+                &= \frac{1}{n^2} \sum_{i=1}^n \mathbf{E}\left[||a_i||^2\right] + \sum_{i\neq j} \langle \underbrace{\mathbf{E}\left[a_i\right]}_{0}, \underbrace{\mathbf{E}\left[a_j\right]}_{0} \rangle \\
+                &\leq \frac{1}{n^2} \sum_{i=1}^n \omega_i || \nabla f_i (x)||^2 \\
+                &= \frac{\omega}{n^2} \sum_{i=1}^n || \nabla f_i (x)||^2.
+    \end{split}
+\end{equation*}
+Next, bound
+\begin{equation*}
+    \begin{split}
+        || \nabla f_i(x)||^2 &= || \nabla f_i(x) - \nabla f_i(y) + \nabla f_i(y)||^2 \\
+                            &\leq 2|| \nabla f_i(x) - \nabla f_i(y)||^2 + 2 || \nabla f_i(y)||^2 \\
+                            &\leq 4L_iD_{f_i}(x,y) + 2 ||\nabla f_i(y)||^2.
+    \end{split}
+\end{equation*}
+Combine everything:
+\begin{equation}
+    \begin{split}
+        G(x, y) &\leq \mathbf{E}\left[ ||g(x) - \nabla f(x)||^2 \right] + 2LD_f(x,y) \\
+                &\leq \frac{\omega}{n^2} \sum_{i=1}^n || \nabla f_i (x)||^2 + 2LD_f(x,y) \\
+                &\leq \frac{\omega}{n^2} \sum_{i=1}^n \left( 4L_iD_{f_i}(x,y) + 2 ||\nabla f_i(y)||^2 \right) + 2LD_f(x,y) \\
+                &= 2 \frac{\omega}{n} \left(2 \sum_{i=1}^n \frac{1}{n} L_iD_{f_i}(x,y) + \frac{1}{n} \sum_{i=1}^n ||\nabla f_i(y)||^2 \right)+ 2LD_f(x,y) \\
+                &\leq  2 \frac{\omega}{n}\left({2}L_{\text{max}}D_f(x,y) + \sigma^2(y) \right)+ 2LD_f(x,y) \\
+                &= 2(L + 2L_{\text{max}})D_f(x,y) + 2 \frac{\omega}{n} \sigma^2(y).
+    \end{split}
+    \label{eq:gxy_deltanotzero}
+\end{equation}
+Else, if $\nabla f(y) = 0$, then
+\begin{equation}
+    \begin{split}
+        G(x, y) &= \mathbf{E}\left[ ||\hat{g}(x)||^2 \right] \\
+                &= \mathbf{E}\left[ ||\hat{g}(x) - \mathbf{E}\left[ \hat{g}(x) \right]||^2 \right] + ||\mathbf{E}\left[ \hat{g}(x) \right]||^2 \\
+                &= \mathbf{E}\left[ ||\hat{g}(x) - \nabla f(x)||^2 \right] + || \nabla f(x)||^2\\
+                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + || \nabla f(x) - \nabla f(y) + \nabla f(y)||^2 \\
+                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2|| \nabla f(x) - \nabla f(y)||^2 + 2 || \nabla f(y)||^2\\
+                &\leq \left(\frac{\omega}{n^2} \sum_{i=1}^n ||\nabla f_i(x)||^2 \right) + 2LD_f(x,y) + 2|| \underbrace{\nabla f(y)}_{0}||^2 \\
+                &\leq ... \text{ same as (\ref{eq:gxy_deltanotzero}), from the third line} \\
+                &= 2(L + 2L_{\text{max}})D_f(x,y) + 2 \frac{\omega}{n} \sigma^2(y)
+    \end{split}
+\end{equation}
+% \begin{figure}
+%     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/P9.png}
+% \end{figure}
 
 %\section*{Part 10}
 % \subsection*{Exercise 41}
 % \subsection*{Exercise 42}
-(maybe) this is the other direction, if matrix is psd then E is psd: \hyperlink{https://math.stackexchange.com/questions/2650892/expectation-of-positive-semidefinite-random-matrix}{}
+\hyperlink{https://math.stackexchange.com/questions/2650892/expectation-of-positive-semidefinite-random-matrix}{}
 
 % \section*{Part 12}
 % \subsection*{Exercise 55}
