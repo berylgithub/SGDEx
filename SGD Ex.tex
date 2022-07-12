@@ -473,9 +473,34 @@ Thus
     \mathbf{E}\left[||g_h(x^k) - \nabla f(x^\star) ||^2\right] \leq 2 \underbrace{(L + \frac{2}{n}\max(\omega_i L_i))}_{A}D_f(x^k, x^\star) + \underbrace{\frac{2}{n^2}\sum_{i=1}^n \omega_i ||h_i - \nabla f_i(x^\star)||^2}_{C}.
 \end{equation*}
 
-% \section*{Part 12}
-% \subsection*{Exercise 55}
-\hyperlink{https://arxiv.org/pdf/2206.10452.pdf}{}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P13]}
+\subsection*{E56}
+Thm 94: whenever $B=0$ and $M=0$, then $\frac{B+M\tilde{B}}{M} = 0$, proof:\\
+First, the stepsize $\gamma$ satisfies
+\begin{equation}
+    0 < \gamma < \frac{1}{\mu}.
+    \label{eq:94gamma}
+\end{equation}
+Then the iterates $\{x^k, \sigma^k\}$ satisfy
+\begin{equation}
+    \mathbf{E}[d^k] \leq (1-\gamma\mu)^k d^0 + \frac{C\gamma}{\mu}.
+    \label{eq:94iterate}
+\end{equation}
+where
+\begin{equation}
+    d^k := \left\| x^k - x^\star \right\|^2.
+\end{equation}
+From Lemma 95, it is clear
+\begin{equation*}
+    \begin{split}
+        \mathbf{E}[d^{k+1}] &\leq (1-\gamma\mu)\mathbf{E}[d^k] + C\gamma^2.
+    \end{split}
+\end{equation*}
+By recurrence, we obtain
+\begin{equation*}
+    \mathbf{E}[d^{k}] \leq (1-\gamma\mu)^k d^0 + \frac{C\gamma}{\mu}.
+\end{equation*}
 \end{document}
