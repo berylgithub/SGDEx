@@ -370,7 +370,77 @@ If $\mathbf{E}[\mathbf{C}^\top\mathbf{C}]$ is finite, then $\forall x \neq 0$:
 \hrule
 \vspace{0.1cm}
 \section*{[P11]}
+\subsection*{E47}
+Define base case:
+\begin{equation*}
+    \begin{split}
+        C_{1,2} &:= C_1 \circ C_2 \in \mathbb{B}^d(\underbrace{(\omega_1 + 1)(\omega_2 + 1) - 1}_{\omega_{1,2}}), \\
+        C_{1,3} &:= C_1 \circ C_2 \circ C_3 = C_{1,2} \circ C_{3}, \\
+        \omega_{1,3} &:= (\omega_{1,2} + 1)(\omega_{3} + 1) - 1 \\
+                &= ((\omega_{1} + 1)(\omega_{2} + 1) - 1 + 1)(\omega_{3} + 1) - 1 \\
+                &= (\omega_{1} + 1)(\omega_{2} + 1)(\omega_{3} + 1) - 1, \\
+                C_{1,n} &:= C_1 \circ C_2 \circ ... \circ C_n = C_{1,n-1} \circ C_{n}, \\
+                \omega_{1,n} &:= (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{n} + 1) - 1 = (\omega_{1,n-1}+1)(\omega_{n}+1)-1.
+    \end{split}
+\end{equation*}
+By induction, the base case is clear. Next, if $n=k$, assume
+\begin{equation*}
+    \begin{split}
+        C_{1,k} &:= C_1 \circ C_2 \circ ... \circ C_k = C_{1,k-1} \circ C_{k}, \\
+        \omega_{1,k} &:= (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1) - 1 = (\omega_{1,k-1}+1)(\omega_{k}+1)-1
+    \end{split}
+\end{equation*}
+is true. Then for $n = k+1$:
+\begin{equation*}
+    \begin{split}
+        C_{1,k+1} &:= C_1 \circ C_2 \circ ... \circ C_k \circ C_{k+1} = C_{1,k-1} \circ C_{k} \circ C_{k+1}, \\
+        \omega_{1,k+1} &:= (\omega_{1,k}+1)(\omega_{k+1}+1)-1 = (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1)(\omega_{k+1} + 1) - 1 \\
+                        &:= ((\omega_{1,k-1}+1)(\omega_{k}+1)-1 + 1)(\omega_{k+1}+1)-1 = (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1)(\omega_{k+1} + 1) - 1\\
+                        &:= ((\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1))(\omega_{k+1}+1)-1 = (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1)(\omega_{k+1} + 1) - 1, \\
+        \omega_{1,k+1} &= (\omega_{1} + 1)(\omega_{2} + 1) ... (\omega_{k} + 1)(\omega_{k+1} + 1) - 1.
+    \end{split}
+\end{equation*}
 
+\subsection*{E48}
+Define
+\begin{equation*}
+    \min \{a_i, b_i\} = 
+    \begin{cases}
+        a_i, \text{ if } a_i < b_i \\
+        b_i, \text{ if } a_i > b_i
+    \end{cases}
+    .
+\end{equation*}
+Thus
+\begin{equation*}
+    \sum_i \min \{a_i, b_i\} = 
+    \begin{cases}
+        \sum_i a_i, \text{ if } a_i < b_i, \forall i \\
+        \sum_i b_i, \text{ if } a_i > b_i, \forall i
+    \end{cases}
+    .
+\end{equation*}
+In case of inequality, define
+\begin{equation*}
+    \begin{split}
+        I := \{i|a_i < b_i \}, \\
+        J := \{i|a_i > b_i\}    .
+    \end{split}
+\end{equation*}
+Thus
+\begin{equation*}
+    \begin{split}
+        \sum_i \min\{a_i, b_i\} <
+        \begin{cases}
+            \sum_i a_i, \text{ if } |I| > |J| \\
+            \sum_i b_i, \text{ if } |J| > |I|
+        \end{cases}
+        .
+    \end{split}
+\end{equation*}
+% \begin{equation*}
+    
+% \end{equation*}
 
 % \section*{Part 12}
 % \subsection*{Exercise 55}
