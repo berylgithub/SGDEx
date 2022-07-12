@@ -438,9 +438,40 @@ Thus
         .
     \end{split}
 \end{equation*}
-% \begin{equation*}
-    
-% \end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P12]}
+\subsection*{E55}
+The DCGD-SHIFT has the same exact steps in the algorithm as DCGD ($n\geq 1$ case), the difference is the gradient estimator:
+\begin{equation}
+    g_h(x) := \frac{1}{n} \sum_{i=1}^n g_{h_i}(x) = \frac{1}{n} \sum_{i=1}^n h_i + \mathcal{C}_i(\nabla f_i(x) - h_i).
+    \label{dcgd_shift_estimator}
+\end{equation}
+which means the gradients on the workers are shifted and then compressed. Decompose
+\begin{equation*}
+    \mathbf{E}\left[||g_h(x^k) - \nabla f(x^\star) ||^2\right] = \mathbf{E}\left[||g_h(x^k) - \nabla f(x^k) ||^2\right] + ||\nabla f(x^k) - \nabla f(x^\star) ||^2.
+\end{equation*}
+Then, bound
+\begin{equation*}
+    \begin{split}
+        \mathbf{E}\left[||g_h(x^k) - \nabla f(x^k) ||^2\right] &= \mathbf{E}\left[\left\|\frac{1}{n} \sum_{i=1}^n \underbrace{\mathcal{C}_i(\nabla f_i(x^k) - h_i) + h_i - \nabla f_i(x^k)}_{b_i^k}  \right\|^2\right] \\
+        &= \frac{1}{n^2} \mathbf{E}\left[\sum_i ||b_i^k||^2 \sum_{i\neq j} \langle b_i^k, b_j^k\rangle\right] \\
+        &= \frac{1}{n^2} \sum_{i=1}^n \mathbf{E}\left[||b_i^k||^2\right] + \frac{1}{n^2} \sum_{i \neq j} \underbrace{\langle \mathbf{E}[b_i^k], \mathbf{E}[b_j^k] \rangle}_{0} \\
+        &= \frac{1}{n^2} \sum_{i=1}^n \mathbf{E}\left[\left\| \mathcal{C}_i(\nabla f_i(x^k) - h_i) + h_i - \nabla f_i(x^k) \right\|^2\right] \\
+        &\leq \frac{1}{n^2} \sum_{i=1}^n \omega_i || \nabla f_i(x^k) - h_i ||^2 \\
+        &= \frac{1}{n^2} \sum_{i=1}^n \omega_i || \nabla f_i(x^k) - \nabla f_i(x^\star) - (h_i - \nabla f_i(x^\star))||^2 \\
+        &\leq \frac{2}{n^2} \sum_{i=1}^n \omega_i||\nabla f_i(x^k) - \nabla f_i(x^\star)||^2 + \omega_i || h_i - \nabla f_i(x^\star) ||^2 \\
+        &\leq \frac{2}{n^2} \sum_{i=1}^n 2 \omega_i L_i D_{f_i}(x^k,x^\star) + \frac{2}{n^2} \sum_{i=1}^n \omega_i || h_i - \nabla f_i(x^\star) ||^2 \\
+        &\leq \frac{4}{n} \max(L_i \omega_i) \frac{1}{n} \sum_{i=1}^n D_{f_i}(x^k, x^\star) + \frac{2}{n^2} \sum_{i=1}^n \omega_i || h_i - \nabla f_i(x^\star) ||^2 \\
+        &\leq \frac{4}{n} \max(L_i \omega_i) D_{f_i}(x^k, x^\star) + \frac{2}{n^2} \sum_{i=1}^n \omega_i || h_i - \nabla f_i(x^\star) ||^2.
+    \end{split}
+\end{equation*}
+Thus
+\begin{equation*}
+    \mathbf{E}\left[||g_h(x^k) - \nabla f(x^\star) ||^2\right] \leq 2 \underbrace{(L + \frac{2}{n}\max(\omega_i L_i))}_{A}D_f(x^k, x^\star) + \underbrace{\frac{2}{n^2}\sum_{i=1}^n \omega_i ||h_i - \nabla f_i(x^\star)||^2}_{C}.
+\end{equation*}
 
 % \section*{Part 12}
 % \subsection*{Exercise 55}
