@@ -503,4 +503,57 @@ By recurrence, we obtain
 \begin{equation*}
     \mathbf{E}[d^{k}] \leq (1-\gamma\mu)^k d^0 + \frac{C\gamma}{\mu}.
 \end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P14]}
+\subsection*{E57}
+In case of arbitrary $p$, the gradient estimator of L-SVRG is
+\begin{equation*}
+    g^k := g(x^k) - g(y^k) + \nabla f(y^k).
+\end{equation*}
+Hence, the unbiasedness:
+\begin{equation*}
+    \begin{split}
+        \mathbf{E}[g^k|x^k, y^k] &= \mathbf{E}[g(x^k) - g(y^k) + \nabla f(y^k)|x^k, y^k] \\
+        &= \mathbf{E}[g(x^k)|x^k, y^k] - \mathbf{E}[g(y^k)|x^k, y^k] + \mathbf{E}[\nabla f(y^k)|x^k, y^k] \\
+        &= \nabla f(x^k) - \nabla f(y^k) + \nabla f(y^k)\\
+        &= \nabla f(x^k).
+    \end{split}
+\end{equation*}
+
+\subsection*{E58}
+If
+\begin{equation*}
+    g(x) = \nabla f(x) + \xi,
+\end{equation*}
+then
+\begin{equation*}
+    \begin{split}
+        g^k &= (\nabla f(x^k) + \xi) - (\nabla f(y^k) + \xi) + \nabla f(y^k) \\
+            &= \nabla f(x^k),
+    \end{split}
+\end{equation*}
+which is exactly GD's gradient estimator, where in this case $p$ does not have any role, since the gradient estimator does not depend on $y^k$ anymore. 
+The convergence rate in this case, with stepsize $\gamma = \frac{1}{6A''}$ is
+\begin{equation*}
+    \mathbf{E}[d^k] \leq \left(1 - \frac{\mu}{6A''}\right)^kd^0,
+\end{equation*}
+where
+\begin{equation*}
+    d^k := \left\| x^k - x^\star \right\|^2.
+\end{equation*}
+Thus
+\begin{equation*}
+    k \geq \frac{6A''}{\mu}\log\frac{1}{\epsilon},
+\end{equation*}
+which is equal to GD's rate of $\mathcal{O}\left(\frac{L}{\mu}\log\frac{1}{\epsilon}\right)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P15]}
+\subsection*{E57}
+
 \end{document}
