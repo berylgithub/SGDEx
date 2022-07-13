@@ -585,18 +585,25 @@ which corresponds to $\nabla f(x^\star) = 0$ in CGD's case. Also, it can be noti
 
 \subsection*{E63}
 The update rule
-\begin{equation*}
+\begin{equation}
     h^{k+1} = h^k - \alpha \mathcal{C}(h^k-\nabla f(x^k))
-\end{equation*}
+    \label{eq:descentupdate}
+\end{equation}
 can be interpreted as a \textit{descent} rule instead of \textit{ascent}, and minimize rather than maximize. The solution for the minimization of $\phi_i^k$ is (\ref{eq:maxoptproblemsol}), the only difference is the compressed shifted gradient is
 \begin{equation*}
 	\tilde{g}^k:= h^k - \nabla f(x^k) = -(\nabla f(x^k) - h^k),
 \end{equation*}
-where this does not change the convergence properties since $\left\|\tilde{g}^k\right\|^2$ is considered. Finally, we have
+where this does not change the convergence properties since $\left\|\tilde{g}^k\right\|^2$ is considered for the convergence bounds. Finally, we have
 \begin{equation*}
 	h_i^{k+1} = h_i^k - \alpha \mathcal{C}_i(\tilde{g}_i^k)
 \end{equation*}
 which is the interpretation of descent. Hence (200) still holds.
+
+If DIANA uses (\ref{eq:descentupdate}) as the update rule then the convergence properties of it does not change by similar argument to when (\refeq{eq:maxoptproblem}) uses (\refeq{eq:descentupdate}) as update rule. The bound on the AC inequality does not change, since
+\begin{equation*}
+	\left\| \nabla f(x) - h \right\| = \left\| h - \nabla f(x) \right\|,
+\end{equation*}
+and the bound of the $\sigma^k$ assumption also does not change.
 
 
 
