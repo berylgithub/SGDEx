@@ -554,22 +554,51 @@ which is equal to GD's rate of $\mathcal{O}\left(\frac{L}{\mu}\log\frac{1}{\epsi
 \vspace{0.1cm}
 \section*{[P15]}
 \subsection*{E62}
-(200) holds since the algorithm is equivalent to CGD if we set
+The algorithm with (200) as the update rule is equivalent to CGD if we set
 \begin{equation*}
     \begin{split}
         x^k &:= h_i^k, \\
         g^k &:= \mathcal{C}_i^k(\nabla f_i(x^k) - h_i^k).
     \end{split}
 \end{equation*}
-Corollary 49 says that, if $0 < \gamma \leq \frac{1}{(\omega+1)L}$ and $\nabla f(y) = 0$, then
+Corollary 49 says that, if $0 < \gamma \leq \frac{1}{(\omega+1)L}$ and $\nabla f(x^\star) = 0$, then
 \begin{equation*}
     \mathbf{E}\left[\left\|x^k - x^\star \right\|^2\right] \leq (1-\gamma\mu)^k\left\|x^0 - x^\star\right\|^2.
 \end{equation*}
+In case of one step iteration, then
+\begin{equation}
+	\mathbf{E}\left[\left\|x^{k+1} - x^\star \right\|^2\right] \leq (1-\gamma\mu)\left\|x^k - x^\star\right\|^2.
+	\label{eq:CGD_onestep}
+\end{equation}
+Since the optimization problem is in the form of
+\begin{equation}
+	\max_{h_i} \phi_i^k(h_i) := -\frac{1}{2}\left\| h_i - \nabla f_i(x^k)\right\|^2,
+	\label{eq:maxoptproblem}
+\end{equation}
+then the solution is
+\begin{equation}
+	\nabla \phi_i^k(h_i) = \nabla f_i(x^k) -h_i = 0 \implies \nabla f_i(x^k) = h_i.
+	\label{eq:maxoptproblemsol}
+\end{equation}
+which corresponds to $\nabla f(x^\star) = 0$ in CGD's case. Also, it can be noticed that $\phi_i^k$ is 1-smooth and 1-strongly convex, i.e., $\mu = L = 1$. Thus, with $0 < \alpha \leq \frac{1}{w_i + 1}$, (200) is equivalent to (\ref{eq:CGD_onestep}).
+
+
 \subsection*{E63}
 The update rule
 \begin{equation*}
     h^{k+1} = h^k - \alpha \mathcal{C}(h^k-\nabla f(x^k))
 \end{equation*}
-can be interpreted as a \textit{descent} rule instead of \textit{ascent}, and minimize instead of maximize.
+can be interpreted as a \textit{descent} rule instead of \textit{ascent}, and minimize rather than maximize. The solution for the minimization of $\phi_i^k$ is (\ref{eq:maxoptproblemsol}), the only difference is the compressed shifted gradient is
+\begin{equation*}
+	\tilde{g}^k:= h^k - \nabla f(x^k) = -(\nabla f(x^k) - h^k),
+\end{equation*}
+where this does not change the convergence properties since $\left\|\tilde{g}^k\right\|^2$ is considered. Finally, we have
+\begin{equation*}
+	h_i^{k+1} = h_i^k - \alpha \mathcal{C}_i(\tilde{g}_i^k)
+\end{equation*}
+which is the interpretation of descent. Hence (200) still holds.
+
+
+
 
 \end{document}
