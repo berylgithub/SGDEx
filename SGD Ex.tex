@@ -73,8 +73,30 @@ $\forall x, y \in \mathbb{R}^d $:
 \vspace{0.1cm}
 \section*{P5}
 \subsection*{E4}
-(i) if $x = z$, then (31) becomes
-
+(i) if $z = x$, then (31) becomes
+\begin{equation*}
+    \begin{split}
+        D_f(x,x) &= D_f(x,y) + \langle x-y, \nabla f(y) - \nabla f(x)\rangle + D_f(y,x) \\
+        0 &= D_f(x,y) + \langle x-y, \nabla f(y) - \nabla f(x)\rangle + D_f(y,x) \\
+        \langle x-y, \nabla f(x) - \nabla f(y)\rangle &= D_f(x,y) + D_f(y,x).
+    \end{split}
+\end{equation*}
+(ii) if $f(x) = \frac{1}{2}\left\| x\right\|^2$, then
+\begin{equation*}
+    \begin{split}
+        D_f(x, y) &= \frac{1}{2}\left\| x\right\|^2 - \frac{1}{2}\left\| y \right\|^2 - \langle y, x-y \rangle = \frac{1}{2}\left\| x-y \right\|^2,
+    \end{split}
+\end{equation*}
+hence (31) becomes
+\begin{equation*}
+    \frac{1}{2}\left\| x - z \right\|^2 = \frac{1}{2}\left\| x - y \right\|^2 + \langle x-y, y-z \rangle + \frac{1}{2}\left\| y - z \right\|^2.
+\end{equation*}
+\subsection*{E5}
+if $\forall x \in \mathbb{R}^d$
+\begin{equation*}
+    \nabla^2 f(x) \succeq 0,
+\end{equation*}
+then with taylor expansion 
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
