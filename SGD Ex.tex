@@ -96,7 +96,14 @@ if $\forall x \in \mathbb{R}^d$
 \begin{equation*}
     \nabla^2 f(x) \succeq 0,
 \end{equation*}
-then with taylor expansion 
+then with taylor expansion, for $t \in [0,1]$
+\begin{equation*}
+    \begin{split}
+        f(y) &= f(x) + \nabla f(x)^\top(y-x) + \underbrace{\frac{1}{2}(y-x)^\top \nabla^2f(x+t(y-x))(y-x)}_{\geq 0} \\
+        f(y) &\geq f(x) + \nabla f(x)^\top(y-x),
+    \end{split}
+\end{equation*}
+which implies the convexity.
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
