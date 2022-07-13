@@ -27,11 +27,10 @@
 \def\spc{\hspace*{0.5cm}}
 
 \title{SGD Ex}
-%\author{Beryl Aribowo}
+\author{Beryl Aribowo}
 
 \begin{document}
 \maketitle
-%$asd \myeq 2$
 %\at{need to rewrite this subsec with more details - the BO eq}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -449,7 +448,7 @@ The DCGD-SHIFT has the same exact steps in the algorithm as DCGD ($n\geq 1$ case
     g_h(x) := \frac{1}{n} \sum_{i=1}^n g_{h_i}(x) = \frac{1}{n} \sum_{i=1}^n h_i + \mathcal{C}_i(\nabla f_i(x) - h_i).
     \label{dcgd_shift_estimator}
 \end{equation}
-which means the gradients on the workers are shifted and then compressed. Decompose
+which means the gradients on the workers are shifted and then compressed. In order to prove the convergence theorem, first decompose
 \begin{equation*}
     \mathbf{E}\left[||g_h(x^k) - \nabla f(x^\star) ||^2\right] = \mathbf{E}\left[||g_h(x^k) - \nabla f(x^k) ||^2\right] + ||\nabla f(x^k) - \nabla f(x^\star) ||^2.
 \end{equation*}
@@ -554,6 +553,23 @@ which is equal to GD's rate of $\mathcal{O}\left(\frac{L}{\mu}\log\frac{1}{\epsi
 \hrule
 \vspace{0.1cm}
 \section*{[P15]}
-\subsection*{E57}
+\subsection*{E62}
+(200) holds since the algorithm is equivalent to CGD if we set
+\begin{equation*}
+    \begin{split}
+        x^k &:= h_i^k, \\
+        g^k &:= \mathcal{C}_i^k(\nabla f_i(x^k) - h_i^k).
+    \end{split}
+\end{equation*}
+Corollary 49 says that, if $0 < \gamma \leq \frac{1}{(\omega+1)L}$ and $\nabla f(y) = 0$, then
+\begin{equation*}
+    \mathbf{E}\left[\left\|x^k - x^\star \right\|^2\right] \leq (1-\gamma\mu)^k\left\|x^0 - x^\star\right\|^2.
+\end{equation*}
+\subsection*{E63}
+The update rule
+\begin{equation*}
+    h^{k+1} = h^k - \alpha \mathcal{C}(h^k-\nabla f(x^k))
+\end{equation*}
+can be interpreted as a \textit{descent} rule instead of \textit{ascent}, and minimize instead of maximize.
 
 \end{document}
