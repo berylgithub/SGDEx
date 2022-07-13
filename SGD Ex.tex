@@ -69,11 +69,13 @@ $\forall x, y \in \mathbb{R}^d $:
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \hrule
-% \vspace{0.1cm}
-% \section*{P5}
-% \subsection*{E4}
-% \vspace{0.1cm}
+\hrule
+\vspace{0.1cm}
+\section*{P5}
+\subsection*{E4}
+(i) if $x = z$, then (31) becomes
+
+\vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
@@ -166,6 +168,20 @@ If $\sigma^2_\star = 0$, then
         \sigma^2_\star = 0 &\implies np_i \nabla f(x^\star) = \nabla f(x^\star).
     \end{split}
 \end{equation*}
+\vspace{0.1cm}
+\subsection*{E28}
+For $i=1,2,...,n$ and a fixed $k$,
+\begin{equation*}
+    \begin{split}
+        f_i =
+        \begin{cases}
+            \frac{c}{2}\left\| x \right\|^2, \text{ if }i=k \\
+            \frac{1}{2c}\left\| x \right\|^2, \text{ if }i \neq k
+        \end{cases}
+        ,
+    \end{split}
+\end{equation*}
+where $c > 1$. In this case, larger $c$ will lead to larger $\max_i L_i$, hence $\frac{1}{n} \sum_i L_i \ll \max_i L_i$. 
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -548,6 +564,7 @@ Thus
     k \geq \frac{6A''}{\mu}\log\frac{1}{\epsilon},
 \end{equation*}
 which is equal to GD's rate of $\mathcal{O}\left(\frac{L}{\mu}\log\frac{1}{\epsilon}\right)$.
+\vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
@@ -604,8 +621,26 @@ If DIANA uses (\ref{eq:descentupdate}) as the update rule then the convergence p
 	\left\| \nabla f(x) - h \right\| = \left\| h - \nabla f(x) \right\|,
 \end{equation*}
 and the bound of the $\sigma^k$ assumption also does not change.
+\vspace{0.1cm}
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P16]}
+\subsection*{E68}
+The solution of 
+\subsection*{E70}
+If $\mathbf{S} = e_i$, then (231) becomes
+\begin{equation*}
+    \mathbf{J}^{k+1} = \mathbf{J}^k + \left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top,
+\end{equation*}
+thus $\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)$ vanishes if $i \neq j$, hence
+\begin{equation*}
+    \mathbf{J}_{:j}^{k+1} =  \mathbf{J}_{:j}^k,
+\end{equation*}
+else, if $i = j$ then
+\begin{equation*}
+    \mathbf{J}_{:j}^{k+1} = \mathbf{J}(x^k)e_i = \nabla f_i(x^k).
+\end{equation*}
 
 \end{document}
