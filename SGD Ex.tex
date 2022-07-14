@@ -14,6 +14,9 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 %macros
@@ -654,7 +657,7 @@ If $\mathbf{S} = e_i$, then (231) becomes
 \begin{equation*}
     \mathbf{J}^{k+1} = \mathbf{J}^k + \left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top,
 \end{equation*}
-thus $\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top$ vanishes if $i \neq j$, hence
+$\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top$ vanishes if $i \neq j$, hence
 \begin{equation*}
     \mathbf{J}_{:j}^{k+1} =  \mathbf{J}_{:j}^k,
 \end{equation*}
@@ -669,5 +672,93 @@ else, if $i = j$ then
 \vspace{0.1cm}
 \section*{[P17]}
 \subsection*{E71}
+Since $x^\star$ is an optimal solution of (232), by the definitions in (232),(233), and (234)
+\begin{equation*}
+    \begin{split}
+        f(x^\star) &= \hat{f}(z) \\
+        \frac{1}{n} \sum_i f_i(x^\star) &= \frac{1}{n} \sum_i f_i(z_i), \\
+    \end{split}
+\end{equation*}
+hence
+\begin{equation*}
+    z_1 = z_2 = ...  = z_n = x^\star,
+\end{equation*}
+in other words
+\begin{equation*}
+    z^\star := (x^\star, ..., x^\star) \in \mathcal{L}.
+\end{equation*}
+is an optimal solution of (233).
+
+Conversely, if $z^\star := (z_1^\star, ..., z_n^\star) \in \mathbb{R}^{nd}$ is an optimal solution of (233), then
+\begin{equation*}
+    \begin{split}
+        \hat{f}(z^\star) = \frac{1}{n}\sum_i f_i(z_i^\star) = \frac{1}{n} \sum_i f_i(x) = f(x),
+    \end{split}
+\end{equation*}
+which means
+\begin{equation*}
+    \begin{split}
+        x &= z^\star_1 = z^\star_2 = ... = z^\star_n, \\
+        z^\star &\in \mathcal{L},
+    \end{split}
+\end{equation*}
+hence $x^\star := z^\star_1 $ is an optimal solution.
 \subsection*{E73}
+DIANA with control update step
+\begin{equation}
+    \hat{h}^{k+1}
+    \begin{cases}
+        \nabla \hat{f}(z^k) &\text{ with probability } p \\
+        \hat{h}^k &\text{ with probability } 1-p
+    \end{cases}
+    ,
+    \label{eq:hstoch}
+\end{equation}
+introduces stochasticity to $\hat{h}$. Since
+\begin{equation}
+    \begin{split}
+        \nabla \hat{f}(z^k) &= \frac{1}{n} (\nabla f_1(z_1^k), ..., \nabla f_n(z_n^k)) \\    
+                            &= \frac{1}{n} (\nabla f_1(x^k), ..., \nabla f_n(x^k)),
+    \end{split}
+    \label{eq:nablaz}
+\end{equation}
+and by multiplying both sides with $n$, (\refeq{eq:hstoch}) becomes
+\begin{equation*}
+    n\hat{h}^{k+1}
+    \begin{cases}
+        (\nabla f_1(x^k), ..., \nabla f_n(x^k)) &\text{ with probability } p \\
+        n\hat{h}^k &\text{ with probability } 1-p
+    \end{cases}
+    ,
+\end{equation*}
+with $b_j^k := n\hat{h}_j^k$ and by using the last line of (\refeq{eq:nablaz}), (\refeq{eq:hstoch}) can be rewritten as
+\begin{equation*}
+    b_j^{k+1}
+    \begin{cases}
+        \nabla f_j(x^k) &\text{ with probability } p \\
+        b_j^k &\text{ with probability } 1-p
+    \end{cases}
+\end{equation*}
+for $j \in [n]$. Meanwhile the gradient estimator used for the induced SGD is the same as (255). Hence the induced SGD method is as the following:
+\begin{algorithm}
+    \caption{DIANA - stocH}
+    \label{alg:dianastoch}
+    \begin{algorithmic}[1] % The number tells where the line numbering should start
+        \State \textbf{Parameters:} learning rate $\gamma > 0$; initial iterate $x^0 \in \mathbb{R}^d$; initial control vectors $b_1^0, ..., b_n^0 \in \mathbb{R}^d$.
+        \For{$k = 0,1,2,...$}
+            \State Sample $i \in [n]$ uniformly at random
+            \State Compute gradient estimate: $g^k = \nabla f_i(x^k) - b_i^k + \frac{1}{n} \sum_{j=1}^n b_j^k$
+            \State Update iterate: $x^{k+1} = x^k - \gamma g^k$
+            \State Update control vectors, $\forall j \in [n]$: 
+            \begin{equation*}
+                b_j^{k+1}
+                \begin{cases}
+                    \nabla f_j(x^k) &\text{ with probability } p \\
+                    b_j^k &\text{ with probability } 1-p
+                \end{cases}
+            \end{equation*}
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
 \end{document}
