@@ -71,7 +71,7 @@ $\forall x, y \in \mathbb{R}^d $:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
 \vspace{0.1cm}
-\section*{P5}
+\section*{[P5]}
 \subsection*{E4}
 (i) if $z = x$, then (31) becomes
 \begin{equation*}
@@ -199,7 +199,7 @@ If $\sigma^2_\star = 0$, then
 \end{equation*}
 \vspace{0.1cm}
 \subsection*{E28}
-For $i=1,2,...,n$ and a fixed $k$,
+For $c > 1$, $i=1,2,...,n$ and a fixed $k$,
 \begin{equation*}
     \begin{split}
         f_i =
@@ -207,10 +207,10 @@ For $i=1,2,...,n$ and a fixed $k$,
             \frac{c}{2}\left\| x \right\|^2, \text{ if }i=k \\
             \frac{1}{2c}\left\| x \right\|^2, \text{ if }i \neq k
         \end{cases}
-        ,
+        .
     \end{split}
 \end{equation*}
-where $c > 1$. In this case, larger $c$ will lead to larger $\max_i L_i$, hence $\frac{1}{n} \sum_i L_i \ll \max_i L_i$. 
+In this case, larger $c$ will lead to larger $\max_i L_i$ and larger $n$ will lead to smaller $\frac{1}{n} \sum_i L_i$, hence $\frac{1}{n} \sum_i L_i \ll \max_i L_i$. 
 \vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -446,7 +446,7 @@ is true. Then for $n = k+1$:
 \end{equation*}
 
 \subsection*{E48}
-Define
+For $a,b \in \mathbb{R}^d$, define
 \begin{equation*}
     \min \{a_i, b_i\} = 
     \begin{cases}
@@ -464,24 +464,15 @@ Thus
     \end{cases}
     .
 \end{equation*}
-In case of inequality, define
+In the case of inequality
 \begin{equation*}
-    \begin{split}
-        I := \{i|a_i < b_i \}, \\
-        J := \{i|a_i > b_i\}    .
-    \end{split}
+    \min\{a_i,b_i \} < a_i \text{ or } b_i,
 \end{equation*}
-Thus
+thus
 \begin{equation*}
-    \begin{split}
-        \sum_i \min\{a_i, b_i\} <
-        \begin{cases}
-            \sum_i a_i, \text{ if } |I| > |J| \\
-            \sum_i b_i, \text{ if } |J| > |I|
-        \end{cases}
-        .
-    \end{split}
+    \sum_i \min\{a_i, b_i\} < \sum_i a_i \text{ or } \sum_i b_i.
 \end{equation*}
+\vspace{0.1cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
@@ -663,7 +654,7 @@ If $\mathbf{S} = e_i$, then (231) becomes
 \begin{equation*}
     \mathbf{J}^{k+1} = \mathbf{J}^k + \left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top,
 \end{equation*}
-thus $\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)$ vanishes if $i \neq j$, hence
+thus $\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top$ vanishes if $i \neq j$, hence
 \begin{equation*}
     \mathbf{J}_{:j}^{k+1} =  \mathbf{J}_{:j}^k,
 \end{equation*}
@@ -671,5 +662,12 @@ else, if $i = j$ then
 \begin{equation*}
     \mathbf{J}_{:j}^{k+1} = \mathbf{J}(x^k)e_i = \nabla f_i(x^k).
 \end{equation*}
+\vspace{0.1cm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hrule
+\vspace{0.1cm}
+\section*{[P17]}
+\subsection*{E71}
+\subsection*{E73}
 \end{document}
