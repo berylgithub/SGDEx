@@ -29,12 +29,11 @@
 \def\at#1{[*** \att #1 ***]}  % text needing attention
 \def\spc{\hspace*{0.5cm}}
 
-\title{SGD Ex}
-\author{Beryl Aribowo}
+\title{390015 KU VGSCO: Stochastic Gradient Descent Methods (2022S)}
+\author{Beryl Ramadhian Aribowo}
 
 \begin{document}
 \maketitle
-%\at{need to rewrite this subsec with more details - the BO eq}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hrule
@@ -651,7 +650,36 @@ and the bound of the $\sigma^k$ assumption also does not change.
 \vspace{0.1cm}
 \section*{[P16]}
 \subsection*{E68}
-The solution of 
+(216) can be transformed into Lagrange multiplier form, which is
+\begin{equation*}
+    \mathcal{L}(J, y) := \frac{1}{2}\left\|\mathbf{J}-\mathbf{J}^k\right\|^2_F + y_l^\top(\mathbf{J}e_l-\nabla f_l(x^k)).
+\end{equation*}
+The solution can be obtained by
+\begin{equation}
+    \begin{split}
+        \frac{\partial}{\partial \mathbf{J}_{ij}}\mathcal{L} = 0 \\
+        \mathbf{J}_{ij}-\mathbf{J}_{ij}^k + y_{li}e_{lj} = 0 \\
+        \mathbf{J}_{ij} = \mathbf{J}_{ij}^k + y_{li} e_{lj}, 
+    \end{split}
+    \label{eq:dlagrange}
+\end{equation}
+where
+\begin{equation*}
+    e_{lj} = 
+    \begin{cases}
+        1 \text{ if } l=j \\
+        0 \text{ otherwise}
+    \end{cases}
+    .
+\end{equation*}
+If the last line of (\refeq{eq:dlagrange}) is inserted back to the equality constraint, then
+\begin{equation*}
+    \begin{split}
+        &\text{ if } l \neq j, \text{ then } \mathbf{J}_{ij}^k e_i = \nabla f_i(x^k), \\
+        &\text{ else if } l = j, \text{ then } \mathbf{J}_{ij}^k e_i + y_{li}e_i= \nabla f_i(x^k).
+    \end{split}
+\end{equation*}
+
 \subsection*{E70}
 If $\mathbf{S} = e_i$, then (231) becomes
 \begin{equation*}
@@ -663,7 +691,7 @@ $\left( \mathbf{J}(x^k) - \mathbf{J}^k \right)e_ie_i^\top$ vanishes if $i \neq j
 \end{equation*}
 else, if $i = j$ then
 \begin{equation*}
-    \mathbf{J}_{:j}^{k+1} = \mathbf{J}(x^k)e_i = \nabla f_i(x^k).
+    \mathbf{J}_{:j}^{k+1} = \mathbf{J}(x^k)e_ie_i^\top = \nabla f_i(x^k).
 \end{equation*}
 \vspace{0.1cm}
 
